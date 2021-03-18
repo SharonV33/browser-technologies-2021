@@ -6,38 +6,37 @@
         <title>Minor webdev enquete</title>
     </head>
     <body>
+    <form id="form" method="post" action="/result">
+        <input name="name" placeholder="name">
+        <input name="age" placeholder="age">
+        <input type="submit" value="submit">
+    </form>
+
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+
         <h1>Minor web dev enquete</h1>
-        <form>
-            <h2>Jouw informatie</h2>
-            <lable for="name">Naam</lable>
-            <input id="name" placeholder="naam">
-            <label for="studentID">Studentennummer</label>
-            <input id="studentID" placeholder="Studentennummer">
-
+        <form action="/result" method="post">
+            <%- include('../partials/userInfo')%>
             <hr />
-            <h2>Weekly Nerd</h2>
-            <label for="WNteacher">Docent</label>
-            <input id="WNteacher">
-
-            <label for="WNweek">In welke week heb je dit blok gevolgd?</label>
-            <ul>
-                <li>
-                    <input type="radio" id="WNweek1" name="WNweek"value="1">
-                    <label for="WNweek1">Week 1 - 4</label>
-                </li>
-                <li>
-                    <input type="radio" id="WNweek2" name="WNweek" value="2">
-                    <label for="WNweek2">Week 5 - 9</label>
-                </li>
-                <li>
-                    <input type="radio" id="WNweek3" name="WNweek" value="3">
-                    <label for="WNweek3">Week 10 - 14</label>
-                </li>
-            </ul>
-
-
-
-
-
+            <%- include('../partials/weeklyNerd')%>
+            <hr />
+            <%- include('../partials/WAFS')%>
+            <hr />
+            <%- include('../partials/CSSTTR')%>
+            <hr />
+            <%- include('../partials/PWA')%>
+            <hr />
+            <%- include('../partials/BT')%>
+            <hr />
+            <%- include('../partials/RTW')%>
+            <hr />
+            <%- include('../partials/HCD')%>
         </form>
+
     </body>
+</html>
