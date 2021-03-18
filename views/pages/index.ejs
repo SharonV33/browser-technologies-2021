@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Minor webdev enquete</title>
-    </head>
-    <body>
-    <form id="form" method="post" action="/result">
-        <input name="name" placeholder="name">
-        <input name="age" placeholder="age">
-        <input type="submit" value="submit">
-    </form>
-
-    <hr />
-    <hr />
-    <hr />
-    <hr />
-    <hr />
-    <hr />
+<%- include('../partials/header')%>
 
         <h1>Minor web dev enquete</h1>
-        <form action="/result" method="post">
+        <form id="form" method="post" action="/result">
             <%- include('../partials/userInfo')%>
             <hr />
             <%- include('../partials/weeklyNerd')%>
@@ -36,6 +17,7 @@
             <%- include('../partials/RTW')%>
             <hr />
             <%- include('../partials/HCD')%>
+            <input type="submit">
         </form>
 
     </body>
