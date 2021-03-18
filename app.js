@@ -21,6 +21,18 @@ app.get('/', function(req, res) {
     res.render('pages/index')
 })
 
+app.post('/survey', urlencodedParser, function (req, res) {
+    const path = `./public/entries/${req.body.studentID}.json`
+
+    if (fs.existsSync(path)) {
+        console.log(`${req.body.name} has already dont the survey`)
+    }
+
+    res.render('pages/survey', {
+        name: req.body.name
+    })
+})
+
 app.post('/result', urlencodedParser, function (req, res) {
 
     const data = {
@@ -83,7 +95,7 @@ app.post('/result', urlencodedParser, function (req, res) {
         if (err) {
             throw err;
         }
-        console.log("JSON data is saved.");
+        console.log("JSON data is saved.")
     })
 
     res.render('pages/result', {
@@ -91,6 +103,7 @@ app.post('/result', urlencodedParser, function (req, res) {
     })
 })
 
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}/`);
+//the "process.env.PORT" is specific for Heroku deployment
+app.listen(process.env.PORT || port, () => {
+    console.log(`Server running at http://localhost:${port}/`)
 })
