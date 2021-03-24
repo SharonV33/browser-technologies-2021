@@ -1,4 +1,85 @@
-ul {
+body {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #c8e7ff;
+}
+
+form {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid darkgray;
+    border-radius: 30px;
+    padding: 2em;
+    background-color: white;
+}
+
+form h2 {
+    text-align: center;
+}
+
+form input[type=text] {
+    width: 80%;
+}
+
+form ul {
     list-style: none;
+}
+
+/*create a rating scale*/
+/*source https://www.youtube.com/watch?v=aAK8mJ6B94c&ab_channel=OnlineTutorials*/
+
+.bar {
+    position: relative;
+    display: flex;
+    flex-direction: row-reverse;
+    margin-top: 1em;
+    border: 1px solid black;
+    background: linear-gradient(to right, #d40000, #ffe40e, #00a800);
+}
+
+.bar input {
+    display: none;
+}
+.bar label {
+    cursor: pointer;
+    width: 40vw;
+    height: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    background-color: white;
+    color: black;
+    border-right: 1px solid black;
+}
+
+.bar input:hover ~ label,
+.bar input:checked ~ label {
+    background: transparent;
+}
+
+/*thank you page styling*/
+.final {
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.final h1 {
+    font-size: 2em;
+    color: black;
+}
+
+.blink {
+    color: #ea7a74;
+    font-size: 1.5em;
+    animation: blink-anim 1s ease 0s infinite alternate;
+}
+
+@keyframes blink-anim {
+    from { opacity: 1; }
+    to { opacity: 0; }
 }
