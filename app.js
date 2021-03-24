@@ -32,23 +32,61 @@ app.post('/WN', urlencodedParser, function (req, res) {
             studentID: req.body.studentID
     }
 
-    userData.push(studentInfo)
     if (fs.existsSync(path)) {
-        console.log(`${req.body.name} has already done the survey`)
 
+        const currentFile = fs.readFileSync(path)
+        const currentData = JSON.parse(currentFile)
+        userData.push(currentData)
         //check if user already started and redirect to where they left off
-
+            if (!currentData[3]) {
+                res.render('pages/WAFS-survey', {
+                    studentID: req.body.studentID
+                })
+            }
+            else if (!currentData[4]) {
+                res.render('pages/CSS-survey', {
+                    studentID: req.body.studentID
+                })
+            }
+            else if (!currentData[5]) {
+                res.render('pages/PWA-survey', {
+                    studentID: req.body.studentID
+                })
+            }
+            else if (!currentData[6]) {
+                res.render('pages/BT-survey', {
+                    studentID: req.body.studentID
+                })
+            }
+            else if (!currentData[7]) {
+                res.render('pages/RTW-survey', {
+                    studentID: req.body.studentID
+                })
+            }
+            else if (!currentData[8]) {
+                res.render('pages/HCD-survey', {
+                    studentID: req.body.studentID
+                })
+            }
+            else {
+                console.log('rip')
+                res.render('pages/result', {
+                    studentID: req.body.studentID
+                })
+            }
     }
     else {
         //write new entry
+        userData.push(studentInfo)
         fs.writeFile(path, JSON.stringify(studentInfo, null, 2), () => {
             console.log("JSON data is saved.")
         })
+        res.render('pages/WN-survey', {
+            name: req.body.name,
+            studentID: req.body.studentID
+        })
     }
-    res.render('pages/WN-survey', {
-        name: req.body.name,
-        studentID: req.body.studentID
-    })
+
 })
 
 //save data from WN and redirect to WAFS
