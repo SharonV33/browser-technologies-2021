@@ -2,8 +2,8 @@ To do
 - [x] Save all answers from survey
 - [x] Data van bestaande studenten id pre invullen
 - [x] Css toevoegen
-- [ ] Client side js toevoegen
-- [ ] Local storage progress bar
+- [x] Client side js toevoegen
+- [x] Local storage progress bar
 - [ ] Form validation
 - [ ] Server validation
 - [ ] Readme + testing

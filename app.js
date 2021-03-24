@@ -69,7 +69,6 @@ app.post('/WN', urlencodedParser, function (req, res) {
                 })
             }
             else {
-                console.log('rip')
                 res.render('pages/result', {
                     studentID: req.body.studentID
                 })
@@ -79,7 +78,7 @@ app.post('/WN', urlencodedParser, function (req, res) {
         //write new entry
         userData.push(studentInfo)
         fs.writeFile(path, JSON.stringify(studentInfo, null, 2), () => {
-            console.log("JSON data is saved.")
+            // console.log("JSON data is saved.")
         })
         res.render('pages/WN-survey', {
             name: req.body.name,
@@ -94,7 +93,6 @@ app.post('/WAFS/:id', urlencodedParser, function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const currentFile = fs.readFileSync(path)
     const currentData = JSON.parse(currentFile)
-    console.log(currentData)
 
     const weeklyNerd = {
             subject: 'weekly ',
@@ -105,10 +103,9 @@ app.post('/WAFS/:id', urlencodedParser, function (req, res) {
             insight: req.body.WNinsight
         }
     userData.push(weeklyNerd)
-    console.log(JSON.stringify(userData))
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
 
@@ -132,7 +129,7 @@ app.post('/CSS/:id', urlencodedParser, function (req, res) {
     userData.push(WAFS)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
     res.render('pages/CSS-survey', {
@@ -155,7 +152,7 @@ app.post('/PWA/:id', urlencodedParser, function (req, res) {
     userData.push(CSSTTR)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
     res.render('pages/PWA-survey', {
@@ -178,7 +175,7 @@ app.post('/BT/:id', urlencodedParser, function (req, res) {
     userData.push(PWA)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
     res.render('pages/BT-survey', {
@@ -201,7 +198,7 @@ app.post('/RTW/:id', urlencodedParser, function (req, res) {
     userData.push(BT)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
     res.render('pages/RTW-survey', {
@@ -224,7 +221,7 @@ app.post('/HCD/:id', urlencodedParser, function (req, res) {
     userData.push(RTW)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
     res.render('pages/HCD-survey', {
@@ -247,7 +244,7 @@ app.post('/result/:id', urlencodedParser, function (req, res) {
     userData.push(HCD)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        console.log("JSON data is saved.")
+        // console.log("JSON data is saved.")
     })
 
     res.render('pages/result', {

@@ -27,6 +27,17 @@ form ul {
     list-style: none;
 }
 
+.progressBarContainer {
+    width: 100%;
+    background-color: #ddd;
+}
+
+.progressBar {
+    width: 0%;
+    height: 30px;
+    background-color: #4CAF50;
+}
+
 /*create a rating scale*/
 /*source https://www.youtube.com/watch?v=aAK8mJ6B94c&ab_channel=OnlineTutorials*/
 
