@@ -15,6 +15,9 @@ app.set('views', 'views')
 //set up fileSystem
 const fs = require('fs')
 
+//set up validator
+const { check, validationResult } = require('express-validator')
+
 let userData = []
 
 const port = 3000;
@@ -24,13 +27,29 @@ app.get('/', function(req, res) {
 })
 
 //save data from student info and redirect to WN
-app.post('/WN', urlencodedParser, function (req, res) {
+app.post('/WN', urlencodedParser, [
+    //form validation
+    check('name',  'yo je hebt geen naam wtf')
+        .exists()
+        .isLength({ min: 3}),
+    check('studentID', 'geef je studenten ID op')
+        .exists()
+        .isNumeric()
+        .isLength({min: 9, max: 9})
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.body.studentID}.json`
     const studentInfo = {
             subject: 'studentInfo',
             name: req.body.name,
             studentID: req.body.studentID
     }
+
+
+    const errors = validationResult(req)
+        if(!errors.isEmpty()){
+            return res.status(422).jsonp(errors.array())
+        }
 
     if (fs.existsSync(path)) {
 
@@ -89,10 +108,23 @@ app.post('/WN', urlencodedParser, function (req, res) {
 })
 
 //save data from WN and redirect to WAFS
-app.post('/WAFS/:id', urlencodedParser, function (req, res) {
+app.post('/WAFS/:id', urlencodedParser,
+    //form validation
+    [
+        check('teacher',  'yo je hebt geen naam wtf')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('week', 'kies week')
+            .exists(),
+        check('material', 'kies material')
+            .exists(),
+        check('explanation', 'kies explanation')
+            .exists(),
+        check('insight', 'kies insight')
+            .exists(),
+    ], function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
-    const currentFile = fs.readFileSync(path)
-    const currentData = JSON.parse(currentFile)
 
     const weeklyNerd = {
             subject: 'weekly ',
