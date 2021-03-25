@@ -1,0 +1,4 @@
+<% if (error.length >= 1) { %>
+    <% error.forEach(function(item) { %>
+        <p class="error"><%- item.msg%></p>
+<% })}%>

@@ -23,16 +23,18 @@ let userData = []
 const port = 3000;
 
 app.get('/', function(req, res) {
-    res.render('pages/index')
+    res.render('pages/index', {
+        error: []
+    })
 })
 
 //save data from student info and redirect to WN
 app.post('/WN', urlencodedParser, [
     //form validation
-    check('name',  'yo je hebt geen naam wtf')
+    check('name',  'Vul alstublieft een naam in')
         .exists()
         .isLength({ min: 3}),
-    check('studentID', 'geef je studenten ID op')
+    check('studentID', 'Vul een geldig studenten ID in (9 cijfers)')
         .exists()
         .isNumeric()
         .isLength({min: 9, max: 9})
@@ -47,53 +49,66 @@ app.post('/WN', urlencodedParser, [
 
 
     const errors = validationResult(req)
-        if(!errors.isEmpty()){
-            return res.status(422).jsonp(errors.array())
-        }
+    if(!errors.isEmpty()){
+        const alert = errors.array()
+        console.log('error, back to index')
+        res.render('pages/index', {
+            studentID: req.body.studentID,
+            error: alert
+        })
+    }
 
     if (fs.existsSync(path)) {
 
-        const currentFile = fs.readFileSync(path)
-        const currentData = JSON.parse(currentFile)
-        userData.push(currentData)
-        //check if user already started and redirect to where they left off
-            if (!currentData[3]) {
-                res.render('pages/WAFS-survey', {
-                    studentID: req.body.studentID
-                })
-            }
-            else if (!currentData[4]) {
-                res.render('pages/CSS-survey', {
-                    studentID: req.body.studentID
-                })
-            }
-            else if (!currentData[5]) {
-                res.render('pages/PWA-survey', {
-                    studentID: req.body.studentID
-                })
-            }
-            else if (!currentData[6]) {
-                res.render('pages/BT-survey', {
-                    studentID: req.body.studentID
-                })
-            }
-            else if (!currentData[7]) {
-                res.render('pages/RTW-survey', {
-                    studentID: req.body.studentID
-                })
-            }
-            else if (!currentData[8]) {
-                res.render('pages/HCD-survey', {
-                    studentID: req.body.studentID
-                })
-            }
-            else {
-                res.render('pages/result', {
-                    studentID: req.body.studentID
-                })
-            }
+    const currentFile = fs.readFileSync(path)
+    const currentData = JSON.parse(currentFile)
+    userData.push(currentData)
+    //check if user already started and redirect to where they left off
+        if (!currentData[3]) {
+            res.render('pages/WAFS-survey', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
+        else if (!currentData[4]) {
+            res.render('pages/CSS-survey', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
+        else if (!currentData[5]) {
+            res.render('pages/PWA-survey', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
+        else if (!currentData[6]) {
+            res.render('pages/BT-survey', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
+        else if (!currentData[7]) {
+            res.render('pages/RTW-survey', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
+        else if (!currentData[8]) {
+            res.render('pages/HCD-survey', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
+        else {
+            res.render('pages/result', {
+                studentID: req.body.studentID,
+                error: []
+            })
+        }
     }
     else {
+        console.log('no error, to WN')
         //write new entry
         userData.push(studentInfo)
         fs.writeFile(path, JSON.stringify(studentInfo, null, 2), () => {
@@ -101,7 +116,8 @@ app.post('/WN', urlencodedParser, [
         })
         res.render('pages/WN-survey', {
             name: req.body.name,
-            studentID: req.body.studentID
+            studentID: req.body.studentID,
+            error: []
         })
     }
 
@@ -111,43 +127,71 @@ app.post('/WN', urlencodedParser, [
 app.post('/WAFS/:id', urlencodedParser,
     //form validation
     [
-        check('teacher',  'yo je hebt geen naam wtf')
+        check('WNteacher',  'Vul alsftublieft een geldige naam in')
             .exists()
             .isAlpha()
             .isLength({ min: 3}),
-        check('week', 'kies week')
+        check('WNweek', 'Selecteer alstublieft een week')
             .exists(),
-        check('material', 'kies material')
+        check('WNmaterial', 'Selecteer een cijfer voor het materiaal')
             .exists(),
-        check('explanation', 'kies explanation')
+        check('WNexplanation', 'Selecteer een cijfer voor het de uitleg')
             .exists(),
-        check('insight', 'kies insight')
+        check('WNinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
             .exists(),
     ], function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
-
     const weeklyNerd = {
-            subject: 'weekly ',
-            teacher: req.body.WNteacher,
-            week: req.body.WNweek,
-            material: req.body.WNmaterial,
-            explanation: req.body.WNexplanation,
-            insight: req.body.WNinsight
-        }
-    userData.push(weeklyNerd)
+        subject: 'weekly nerd',
+        teacher: req.body.WNteacher,
+        week: req.body.WNweek,
+        material: req.body.WNmaterial,
+        explanation: req.body.WNexplanation,
+        insight: req.body.WNinsight
+    }
 
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+    //check if there are validation errors
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+        const alert = errors.array()
+        console.log('error, back to WN')
+        res.render('pages/wn-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
+    else {
+        userData.push(weeklyNerd)
 
-
-    res.render('pages/WAFS-survey', {
-        studentID: req.params.id
-    })
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
+        console.log('geen error, naar WAFS')
+        res.render('pages/WAFS-survey', {
+            studentID: req.params.id,
+            error: []
+        })
+    }
 })
 
 //save data from WAFS and redirect to CSS
-app.post('/CSS/:id', urlencodedParser, function (req, res) {
+app.post('/CSS/:id', urlencodedParser,
+    //form validation
+    [
+        check('WAFSteacher', 'Vul alsftublieft een geldige naam in')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('WAFSweek', 'Selecteer alstublieft een week')
+            .exists(),
+        check('WAFSmaterial', 'Selecteer een cijfer voor het materiaal')
+            .exists(),
+        check('WAFSexplanation', 'Selecteer een cijfer voor het de uitleg')
+            .exists(),
+        check('WAFSinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
+            .exists(),
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const WAFS = {
             subject: 'Web apps from scratch',
@@ -157,20 +201,51 @@ app.post('/CSS/:id', urlencodedParser, function (req, res) {
             explanation: req.body.WAFSexplanation,
             insight: req.body.WAFSinsight
     }
+    //check if there are validation errors
+    const errors = validationResult(req)
+    if(errors.length >= 1){
+        console.log('error, terug naar wafs', errors)
+        const alert = errors.array()
+        res.render('pages/wafs-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
+    else {
+        userData.push(WAFS)
 
-    userData.push(WAFS)
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
 
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+        console.log('geen error, door naar css')
 
-    res.render('pages/CSS-survey', {
-        studentID: req.params.id
-    })
+        res.render('pages/CSS-survey', {
+            studentID: req.params.id,
+            error: []
+        })
+    }
+
 })
 
 //save data from CSS and redirect to PWA
-app.post('/PWA/:id', urlencodedParser, function (req, res) {
+app.post('/PWA/:id', urlencodedParser,
+    //form validation
+    [
+        check('CSSteacher', 'Vul alsftublieft een geldige naam in')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('CSSweek', 'Selecteer alstublieft een week')
+            .exists(),
+        check('CSSmaterial', 'Selecteer een cijfer voor het materiaal')
+            .exists(),
+        check('CSSexplanation', 'Selecteer een cijfer voor het de uitleg')
+            .exists(),
+        check('CSSinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
+            .exists(),
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const CSSTTR = {
             subject: 'CSS to the rescue',
@@ -181,19 +256,52 @@ app.post('/PWA/:id', urlencodedParser, function (req, res) {
             insight: req.body.CSSinsight
     }
 
-    userData.push(CSSTTR)
+    //check if there are validation errors
+    const errors = validationResult(req)
+    if(errors.length >= 1){
+        console.log('error, terug naar css')
+        const alert = errors.array()
+        res.render('pages/CSS-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
 
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+    else {
+        userData.push(CSSTTR)
 
-    res.render('pages/PWA-survey', {
-        studentID: req.params.id
-    })
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
+
+        console.log('geen error, door naar pwa')
+
+        res.render('pages/PWA-survey', {
+            studentID: req.params.id,
+            error: []
+        })
+    }
+
 })
 
 //save data from PWA and redirect to BT
-app.post('/BT/:id', urlencodedParser, function (req, res) {
+app.post('/BT/:id', urlencodedParser,
+    //form validation
+    [
+        check('PWAteacher',  'Vul alsftublieft een geldige naam in')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('PWAweek', 'Selecteer alstublieft een week')
+            .exists(),
+        check('PWAmaterial', 'Selecteer een cijfer voor het materiaal')
+            .exists(),
+        check('PWAexplanation', 'Selecteer een cijfer voor het de uitleg')
+            .exists(),
+        check('PWAinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
+            .exists(),
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const PWA = {
             subject: 'Progressive web apps',
@@ -204,19 +312,52 @@ app.post('/BT/:id', urlencodedParser, function (req, res) {
             insight: req.body.PWAinsight
     }
 
-    userData.push(PWA)
+    //check if there are validation errors
+    const errors = validationResult(req)
+    if(errors.length >= 1){
+        const alert = errors.array()
+        console.log('error, terug naar pwa')
+        res.render('pages/PWA-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
+    else {
+        userData.push(PWA)
 
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
 
-    res.render('pages/BT-survey', {
-        studentID: req.params.id
-    })
+        console.log('geen error, door naar bt')
+
+        res.render('pages/BT-survey', {
+            studentID: req.params.id,
+            error: []
+        })
+    }
+
+
 })
 
 //save data from BT and redirect to RTW
-app.post('/RTW/:id', urlencodedParser, function (req, res) {
+app.post('/RTW/:id', urlencodedParser,
+    //form validation
+    [
+        check('BTteacher',  'Vul alsftublieft een geldige naam in')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('BTweek', 'Selecteer alstublieft een week')
+            .exists(),
+        check('BTmaterial', 'Selecteer een cijfer voor het materiaal')
+            .exists(),
+        check('BTexplanation', 'Selecteer een cijfer voor het de uitleg')
+            .exists(),
+        check('BTinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
+            .exists(),
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const BT = {
             subject: 'Browser technologies',
@@ -227,19 +368,50 @@ app.post('/RTW/:id', urlencodedParser, function (req, res) {
             insight: req.body.BTinsight
     }
 
-    userData.push(BT)
+    //check if there are validation errors
+    const errors = validationResult(req)
+    if(errors.length >= 1){
+        const alert = errors.array()
+        console.log('error, terug naar BT')
+        res.render('pages/BT-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
+    else {
+        userData.push(BT)
 
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
+        console.log('geen error, door naar RTW')
 
-    res.render('pages/RTW-survey', {
-        studentID: req.params.id
-    })
+        res.render('pages/RTW-survey', {
+            studentID: req.params.id,
+            error: []
+        })
+    }
+
 })
 
 //save data from RTW and redirect to HDC
-app.post('/HCD/:id', urlencodedParser, function (req, res) {
+app.post('/HCD/:id', urlencodedParser,
+    //form validation
+    [
+        check('RTWteacher',  'Vul alsftublieft een geldige naam in')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('RTWweek', 'Selecteer alstublieft een week')
+            .exists(),
+        check('RTWmaterial', 'Selecteer een cijfer voor het materiaal')
+            .exists(),
+        check('RTWexplanation', 'Selecteer een cijfer voor het de uitleg')
+            .exists(),
+        check('RTWinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
+            .exists(),
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const RTW = {
             subject: 'Real time web',
@@ -250,19 +422,50 @@ app.post('/HCD/:id', urlencodedParser, function (req, res) {
             insight: req.body.RTWinsight
     }
 
+    //check if there are validation errors
+    const errors = validationResult(req)
+    if(errors.length >= 1){
+        console.log(errors)
+        const alert = errors.array()
+        console.log('error, terug naar RTW')
+        res.render('pages/RTW-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
+
     userData.push(RTW)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
         // console.log("JSON data is saved.")
     })
 
+        console.log('geen error, door naar hcd')
+
     res.render('pages/HCD-survey', {
-        studentID: req.params.id
+        studentID: req.params.id,
+        error: []
     })
 })
 
 //save data from RTW and redirect to thank you page
-app.post('/result/:id', urlencodedParser, function (req, res) {
+app.post('/result/:id', urlencodedParser,
+    //form validation
+    [
+        check('HCDteacher', 'Vul alsftublieft een geldige naam in')
+            .exists()
+            .isAlpha()
+            .isLength({ min: 3}),
+        check('HCDweek', 'Selecteer alstublieft een week')
+            .exists(),
+        check('HCDmaterial', 'Selecteer een cijfer voor het materiaal')
+            .exists(),
+        check('HCDexplanation', 'Selecteer een cijfer voor het de uitleg')
+            .exists(),
+        check('HCDinsight', 'Selecteer een cijfer voor het het verkregen inzicht')
+            .exists(),
+    ],
+    function (req, res) {
     const path = `./public/entries/${req.params.id}.json`
     const HCD = {
             subject: 'Human centered design',
@@ -273,14 +476,28 @@ app.post('/result/:id', urlencodedParser, function (req, res) {
             insight: req.body.HCDinsight
     }
 
+
+    const errors = validationResult(req)
+    //check if there are validation errors
+    if(errors.length >= 1){
+        console.log('error, terug naar hcd')
+        const alert = errors.array()
+        res.render('pages/hcd-survey', {
+            studentID: req.params.id,
+            error: alert
+        })
+    }
+
     userData.push(HCD)
 
     fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
         // console.log("JSON data is saved.")
     })
+        console.log('geen error, door naar result')
 
     res.render('pages/result', {
-        studentID: req.params.id
+        studentID: req.params.id,
+        error: []
     })
 })
 

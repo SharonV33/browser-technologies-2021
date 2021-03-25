@@ -26,6 +26,13 @@ form {
     background-color: #5067af;
 }
 
+.error {
+    background-color: aquamarine;
+    line-height: 2em;
+    margin: 0.25em;
+    padding-left: 0.5em;
+}
+
 form h2 {
     text-align: center;
 }
@@ -98,4 +105,43 @@ form input[type=submit] {
 @keyframes blink-anim {
     from { opacity: 1; }
     to { opacity: 0; }
+}
+
+@media (max-width: 1000px)  {
+
+    body {
+        margin: 0;
+        padding: 0;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+    form {
+        width: 100vw;
+        font-size: 1.5em;
+        padding: 2em;
+    }
+
+    form input {
+        line-height: 2em;
+        font-size: 1.5em;
+        border: 1px solid grey;
+    }
+
+    form label {
+        font-size: 2em;
+        width: 200%;
+    }
+    form input[type=radio] {
+        display: none;
+    }
+
+    form input:checked ~ label {
+        text-decoration: underline;
+    }
+
+    .final p {
+        font-size: 2em;
+    }
 }

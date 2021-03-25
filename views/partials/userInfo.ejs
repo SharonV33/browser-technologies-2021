@@ -1,6 +1,12 @@
 <form id="form" method="post" action="/WN">
 <h2>Jouw informatie</h2>
-    <lable for="name">Naam</lable>
+
+    <% if (error.length > 1) { %>
+        <% error.forEach(function(item) { %>
+        <p class="error"><%- item.msg%></p>
+    <% })}%>
+
+    <label for="name">Naam</label>
     <input name="name"  id="name" placeholder="name">
     <label for="studentID">Studentennummer</label>
     <input name="studentID" id="studentID" placeholder="Studentennummer">
