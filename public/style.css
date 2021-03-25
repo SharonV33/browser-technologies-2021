@@ -109,18 +109,14 @@ form input[type=submit] {
 
 @media (max-width: 1000px)  {
 
-    body {
-        margin: 0;
-        padding: 0;
-    }
-
     h1 {
         font-size: 3em;
     }
     form {
-        width: 100vw;
+        width: 90%;
         font-size: 1.5em;
         padding: 2em;
+        margin: 0em 1em;
     }
 
     form input {
@@ -129,16 +125,31 @@ form input[type=submit] {
         border: 1px solid grey;
     }
 
-    form label {
-        font-size: 2em;
-        width: 200%;
+    form label:nth-of-type(1),
+    form label:nth-of-type(2){
+        display: block;
     }
+
+    form label {
+        font-size: 1.7em;
+        margin-top: 0.5em;
+    }
+
     form input[type=radio] {
         display: none;
     }
 
     form input:checked ~ label {
         text-decoration: underline;
+    }
+
+    .bar input ~ label {
+        margin-top: 0;
+        display: inherit;
+    }
+
+    .bar input:checked ~ label  {
+        text-decoration: none;
     }
 
     .final p {
