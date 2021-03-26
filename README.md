@@ -30,6 +30,19 @@ stimulating, I've made the radio buttons into a bar with a hidden gradient going
 yellow to green. While enhancing the overall experience, this bar also gives back visual 
 feedback on the answer the user has selected.
 
+## the pleasurable layer
+The final layer of enhancement is called the pleasurable layer. This layer, like the 
+usable layer, makes the website or app easier to use without adding or removing key features. 
+The pleasurable layer is most often associated with adding JavaScript. The main issue with 
+this layer being JavaScript is that not all users have all the latest features of JavaScript 
+available on their device. This could either be due to an older device or an old browser. 
+One of these JavaScript features that might be unavailable is LocalStorage. This allows a 
+website to store data onto the user's computer. Some browsers or devices don't allow this or 
+a user could turn this feature off manually. I decided to add a progress bar using LocalStorage 
+for users who have this feature enabled and available. The progress bar lets users see how far 
+in the survey they are at any point. This could also motivate the user to finish the survey if 
+they see that they are almost done.
+
 ## Testing
 Google pixel 4 - chrome
 iPhone- safari
@@ -39,6 +52,8 @@ Desktop firefox en safari
 ## Enhancements
 For my enhancements, I decided to choose for a selector bar with CSS 
 for my usable layer and a progress bar for my pleasurable layer. Neither of these features are required to reach the goal of filling in the survey, but they make the user experience more pleasurable.
+
+## installing
 
 To do
 - [x] Save all answers from survey to json file
@@ -50,3 +65,5 @@ To do
 - [x] Server validation
 - [ ] Readme
 - [ ] testing
+
+MIT licence
