@@ -54,6 +54,26 @@ For my enhancements, I decided to choose for a selector bar with CSS
 for my usable layer and a progress bar for my pleasurable layer. Neither of these features are required to reach the goal of filling in the survey, but they make the user experience more pleasurable.
 
 ## installing
+Clone the repository
+```
+git clone https://github.com/SharonV33/browser-technologies-2021.git
+```
+Navigate to the directory
+```
+cd YOUR_SOURCE_DIRECTORY/browser-technologies-2021
+```
+Install dependencies
+```
+npm install 
+```
+Run the project for development, this will start the server on localhost:3000 using nodemon
+```
+npm run dev
+```
+Run the project for deplopment
+```
+npm run start
+```
 
 To do
 - [x] Save all answers from survey to json file
