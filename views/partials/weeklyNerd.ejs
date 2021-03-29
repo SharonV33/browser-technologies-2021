@@ -1,23 +1,40 @@
-<section>
-    <h2>Weekly Nerd</h2>
+
+<form id="form" method="post" action="/WAFS/<%- studentID %>">
+ <h2>Weekly Nerd</h2>
 
     <%- include('../partials/error')%>
 
     <label for="WNteacher">Docent</label>
-    <input name="WNteacher" id="WNteacher" placeholder="docent">
+    <% if(answers.teacher ){ %>
+        <input name="WNteacher" id="WNteacher" placeholder="docent" type="text" value=<%= answers.teacher %>>
+    <% } else { %>
+        <input name="WNteacher" id="WNteacher" placeholder="docent" type="text">
+    <% }%>
 
     <label for="WNweek">In welke week heb je dit blok gevolgd?</label>
     <ul>
         <li>
-            <input type="radio" id="WNweek1" name="WNweek"value="1">
+            <% if(answers.week === "1" ) { %>
+                <input type="radio" id="WNweek1" name="WNweek" value="1" checked="checked">
+            <% } else { %>
+                <input type="radio" id="WNweek1" name="WNweek" value="1">
+            <% } %>
             <label for="WNweek1">Week 1 - 4</label>
         </li>
         <li>
+            <% if(answers.week === "2" ) { %>
+                <input type="radio" id="WNweek2" name="WNweek" value="2" checked="checked">
+            <% } else { %>
             <input type="radio" id="WNweek2" name="WNweek" value="2">
+            <% } %>
             <label for="WNweek2">Week 5 - 9</label>
         </li>
         <li>
-            <input type="radio" id="WNweek3" name="WNweek" value="3">
+            <% if(answers.week === "3" ) { %>
+                <input type="radio" id="WNweek3" name="WNweek" value="3" checked="checked">
+            <% } else { %>
+                <input type="radio" id="WNweek2" name="WNweek" value="3">
+            <% } %>
             <label for="WNweek3">Week 10 - 14</label>
         </li>
     </ul>
@@ -25,104 +42,225 @@
     <label for="WNmaterial">Wat vond je van de lesstof?</label>
     <section class="bar">
 
-        <input type="radio" id="WNMaterial10" name="WNmaterial" value="10">
+        <% if( answers.material === "10" ) { %>
+            <input type="radio" id="WNMaterial10" name="WNmaterial" value="10" checked="checked">
+        <% } else { %>
+                <input type="radio" id="WNMaterial10" name="WNmaterial" value="10">
+        <% } %>
         <label for="WNMaterial10">10</label>
 
-        <input type="radio" id="WNMaterial9" name="WNmaterial" value="9">
+        <% if( answers.material === "9" ) { %>
+            <input type="radio" id="WNMaterial9" name="WNmaterial" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial9" name="WNmaterial" value="9">
+        <% } %>
         <label for="WNMaterial9">9</label>
 
-        <input type="radio" id="WNMaterial8" name="WNmaterial" value="8">
+        <% if( answers.material === "8" ) { %>
+            <input type="radio" id="WNMaterial8" name="WNmaterial" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial8" name="WNmaterial" value="8">
+        <% } %>
         <label for="WNMaterial8">8</label>
-
-
-        <input type="radio" id="WNMaterial7" name="WNmaterial" value="7">
+            
+        <% if( answers.material === "7" ) { %>
+            <input type="radio" id="WNMaterial7" name="WNmaterial" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial7" name="WNmaterial" value="7">
+        <% } %>
         <label for="WNMaterial7">7</label>
 
-        <input type="radio" id="WNMaterial6" name="WNmaterial" value="6">
+        <% if( answers.material === "6" ) { %>
+            <input type="radio" id="WNMaterial6" name="WNmaterial" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial6" name="WNmaterial" value="6">
+        <% } %>
         <label for="WNMaterial6">6</label>
 
-        <input type="radio" id="WNMaterial5" name="WNmaterial" value="5">
+        <% if( answers.material === "5" ) { %>
+            <input type="radio" id="WNMaterial5" name="WNmaterial" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial5" name="WNmaterial" value="5">
+        <% } %>
         <label for="WNMaterial5">5</label>
 
-        <input type="radio" id="WNMaterial4" name="WNmaterial" value="4">
+        <% if( answers.material === "4" ) { %>
+            <input type="radio" id="WNMaterial4" name="WNmaterial" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial4" name="WNmaterial" value="4">
+        <% } %>
         <label for="WNMaterial4">4</label>
 
-        <input type="radio" id="WNMaterial3" name="WNmaterial" value="3">
+        <% if( answers.material === "3" ) { %>
+            <input type="radio" id="WNMaterial3" name="WNmaterial" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial3" name="WNmaterial" value="3">
+        <% } %>
         <label for="WNMaterial3">3</label>
-
-        <input type="radio" id="WNMaterial2" name="WNmaterial" value="2">
+            
+        <% if( answers.material === "2" ) { %>
+            <input type="radio" id="WNMaterial2" name="WNmaterial" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial2" name="WNmaterial" value="2">
+        <% } %>
         <label for="WNMaterial2">2</label>
 
-        <input type="radio" id="WNMaterial1" name="WNmaterial" value="1">
+        <% if( answers.material === "1" ) { %>
+            <input type="radio" id="WNMaterial1" name="WNmaterial" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNMaterial1" name="WNmaterial" value="1">
+        <% } %>
         <label for="WNMaterial1">1</label>
     </section>
 
-    <label for="WNexplanation">Wat vond je van de Uitleg?</label>
+    <label for="WNexplanation">Wat vond je van de uitleg?</label>
     <section class="bar">
 
-        <input type="radio" id="WNexplanation10" name="WNexplanation" value="10">
+        <% if( answers.explanation === "10" ) { %>
+            <input type="radio" id="WNexplanation10" name="WNexplanation" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation10" name="WNexplanation" value="10">
+        <% } %>
         <label for="WNexplanation10">10</label>
 
-        <input type="radio" id="WNexplanation9" name="WNexplanation" value="9">
+        <% if( answers.explanation === "9" ) { %>
+            <input type="radio" id="WNexplanation9" name="WNexplanation" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation9" name="WNexplanation" value="9">
+        <% } %>
         <label for="WNexplanation9">9</label>
 
-        <input type="radio" id="WNexplanation8" name="WNexplanation" value="8">
+        <% if( answers.explanation === "8" ) { %>
+            <input type="radio" id="WNexplanation8" name="WNexplanation" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation8" name="WNexplanation" value="8">
+        <% } %>
         <label for="WNexplanation8">8</label>
 
-        <input type="radio" id="WNexplanation7" name="WNexplanation" value="7">
+        <% if( answers.explanation === "7" ) { %>
+            <input type="radio" id="WNexplanation7" name="WNexplanation" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation7" name="WNexplanation" value="7">
+        <% } %>
         <label for="WNexplanation7">7</label>
 
-        <input type="radio" id="WNexplanation6" name="WNexplanation" value="6">
+        <% if( answers.explanation === "6" ) { %>
+            <input type="radio" id="WNexplanation6" name="WNexplanation" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation6" name="WNexplanation" value="6">
+        <% } %>
         <label for="WNexplanation6">6</label>
 
-        <input type="radio" id="WNexplanation5" name="WNexplanation" value="5">
+        <% if( answers.explanation === "5" ) { %>
+            <input type="radio" id="WNexplanation5" name="WNexplanation" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation5" name="WNexplanation" value="5">
+        <% } %>
         <label for="WNexplanation5">5</label>
 
-        <input type="radio" id="WNexplanation4" name="WNexplanation" value="4">
+        <% if( answers.explanation === "4" ) { %>
+            <input type="radio" id="WNexplanation4" name="WNexplanation" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation4" name="WNexplanation" value="4">
+        <% } %>
         <label for="WNexplanation4">4</label>
 
-        <input type="radio" id="WNexplanation3" name="WNexplanation" value="3">
+        <% if( answers.explanation === "3" ) { %>
+            <input type="radio" id="WNexplanation3" name="WNexplanation" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation3" name="WNexplanation" value="3">
+        <% } %>
         <label for="WNexplanation3">3</label>
 
-        <input type="radio" id="WNexplanation2" name="WNexplanation" value="2">
+        <% if( answers.explanation === "2" ) { %>
+            <input type="radio" id="WNexplanation2" name="WNexplanation" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation2" name="WNexplanation" value="2">
+        <% } %>
         <label for="WNexplanation2">2</label>
 
-        <input type="radio" id="WNexplanation1" name="WNexplanation" value="1">
+        <% if( answers.explanation === "1" ) { %>
+            <input type="radio" id="WNexplanation1" name="WNexplanation" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNexplanation1" name="WNexplanation" value="1">
+        <% } %>
         <label for="WNexplanation1">1</label>
-
     </section>
 
     <label for="WNinsight">Tot hoever is je inzicht verbeterd?</label>
     <section class="bar">
-        <input type="radio" id="WNinsight10" name="WNinsight" value="10">
+
+        <% if( answers.insight === "10" ) { %>
+            <input type="radio" id="WNinsight10" name="WNinsight" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight10" name="WNinsight" value="10">
+        <% } %>
         <label for="WNinsight10">10</label>
 
-        <input type="radio" id="WNinsight9" name="WNinsight" value="9">
+        <% if( answers.insight === "9" ) { %>
+            <input type="radio" id="WNinsight9" name="WNinsight" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight9" name="WNinsight" value="9">
+        <% } %>
         <label for="WNinsight9">9</label>
 
-        <input type="radio" id="WNinsight8" name="WNinsight" value="8">
+        <% if( answers.insight === "8" ) { %>
+            <input type="radio" id="WNinsight8" name="WNinsight" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight8" name="WNinsight" value="8">
+        <% } %>
         <label for="WNinsight8">8</label>
 
-        <input type="radio" id="WNinsight7" name="WNinsight" value="7">
+        <% if( answers.insight === "7" ) { %>
+            <input type="radio" id="WNinsight7" name="WNinsight" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight7" name="WNinsight" value="7">
+        <% } %>
         <label for="WNinsight7">7</label>
 
-        <input type="radio" id="WNinsight6" name="WNinsight" value="6">
+        <% if( answers.insight === "6" ) { %>
+            <input type="radio" id="WNinsight6" name="WNinsight" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight6" name="WNinsight" value="6">
+        <% } %>
         <label for="WNinsight6">6</label>
 
-        <input type="radio" id="WNinsight5" name="WNinsight" value="5">
+        <% if( answers.insight === "5" ) { %>
+            <input type="radio" id="WNinsight5" name="WNinsight" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight5" name="WNinsight" value="5">
+        <% } %>
         <label for="WNinsight5">5</label>
 
-        <input type="radio" id="WNinsight4" name="WNinsight" value="4">
+        <% if( answers.insight === "4" ) { %>
+            <input type="radio" id="WNinsight4" name="WNinsight" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight4" name="WNinsight" value="4">
+        <% } %>
         <label for="WNinsight4">4</label>
 
-        <input type="radio" id="WNinsight3" name="WNinsight" value="3">
+        <% if( answers.insight === "3" ) { %>
+            <input type="radio" id="WNinsight3" name="WNinsight" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight3" name="WNinsight" value="3">
+        <% } %>
         <label for="WNinsight3">3</label>
 
-        <input type="radio" id="WNinsight2" name="WNinsight" value="2">
+        <% if( answers.insight === "2" ) { %>
+            <input type="radio" id="WNinsight2" name="WNinsight" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight2" name="WNinsight" value="2">
+        <% } %>
         <label for="WNinsight2">2</label>
 
-        <input type="radio" id="WNinsight1" name="WNinsight" value="1">
+        <% if( answers.insight === "1" ) { %>
+            <input type="radio" id="WNinsight1" name="WNinsight" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WNinsight1" name="WNinsight" value="1">
+        <% } %>
         <label for="WNinsight1">1</label>
-
     </section>
-</section>
+
+
+    <input type="submit" value="Volgende">
+</form>

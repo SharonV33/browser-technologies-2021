@@ -24,7 +24,8 @@ const port = 3000;
 
 app.get('/', function(req, res) {
     res.render('pages/index', {
-        error: []
+        error: [],
+        answers: []
     })
 })
 
@@ -32,12 +33,10 @@ app.get('/', function(req, res) {
 app.post('/WN', urlencodedParser, [
     //form validation
     check('name',  'Vul alstublieft een naam in')
-        .exists()
         .isLength({ min: 3}),
     check('studentID', 'Vul een geldig studenten ID in (9 cijfers)')
-        .exists()
+        .isLength({ min: 9, max:9 })
         .isNumeric()
-        .isLength({min: 9, max: 9})
     ],
     function (req, res) {
     const path = `./public/entries/${req.body.studentID}.json`
@@ -52,73 +51,77 @@ app.post('/WN', urlencodedParser, [
     if(!errors.isEmpty()){
         const alert = errors.array()
         console.log('error, back to index')
+        console.log(studentInfo.name)
         res.render('pages/index', {
             studentID: req.body.studentID,
-            error: alert
+            error: alert,
+            answers: studentInfo
         })
-    }
-
-    if (fs.existsSync(path)) {
-
-    const currentFile = fs.readFileSync(path)
-    const currentData = JSON.parse(currentFile)
-    userData.push(currentData)
-    //check if user already started and redirect to where they left off
-        if (!currentData[3]) {
-            res.render('pages/WAFS-survey', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
-        else if (!currentData[4]) {
-            res.render('pages/CSS-survey', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
-        else if (!currentData[5]) {
-            res.render('pages/PWA-survey', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
-        else if (!currentData[6]) {
-            res.render('pages/BT-survey', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
-        else if (!currentData[7]) {
-            res.render('pages/RTW-survey', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
-        else if (!currentData[8]) {
-            res.render('pages/HCD-survey', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
-        else {
-            res.render('pages/result', {
-                studentID: req.body.studentID,
-                error: []
-            })
-        }
     }
     else {
-        console.log('no error, to WN')
-        //write new entry
-        userData.push(studentInfo)
-        fs.writeFile(path, JSON.stringify(studentInfo, null, 2), () => {
-            // console.log("JSON data is saved.")
-        })
-        res.render('pages/WN-survey', {
-            name: req.body.name,
-            studentID: req.body.studentID,
-            error: []
-        })
+        //check if user has already started
+        if (fs.existsSync(path)) {
+
+            const currentFile = fs.readFileSync(path)
+            const currentData = JSON.parse(currentFile)
+            userData.push(currentData)
+            //check if user already started and redirect to where they left off
+            if (!currentData[3]) {
+                res.render('pages/WAFS-survey', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            } else if (!currentData[4]) {
+                res.render('pages/CSS-survey', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            } else if (!currentData[5]) {
+                res.render('pages/PWA-survey', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            } else if (!currentData[6]) {
+                res.render('pages/BT-survey', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            } else if (!currentData[7]) {
+                res.render('pages/RTW-survey', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            } else if (!currentData[8]) {
+                res.render('pages/HCD-survey', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            } else {
+                res.render('pages/result', {
+                    studentID: req.body.studentID,
+                    error: [],
+                    answers: []
+                })
+            }
+        } else {
+            console.log('no error, to WN')
+            //write new entry
+            userData.push(studentInfo)
+            fs.writeFile(path, JSON.stringify(studentInfo, null, 2), () => {
+                // console.log("JSON data is saved.")
+            })
+            res.render('pages/WN-survey', {
+                studentID: req.body.studentID,
+                error: [],
+                answers: []
+            })
+        }
     }
 
 })
@@ -128,7 +131,6 @@ app.post('/WAFS/:id', urlencodedParser,
     //form validation
     [
         check('WNteacher',  'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('WNweek', 'Selecteer alstublieft een week')
@@ -154,10 +156,12 @@ app.post('/WAFS/:id', urlencodedParser,
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         const alert = errors.array()
+        console.log(weeklyNerd.material)
         console.log('error, back to WN')
         res.render('pages/wn-survey', {
             studentID: req.params.id,
-            error: alert
+            error: alert,
+            answers: weeklyNerd
         })
     }
     else {
@@ -169,7 +173,8 @@ app.post('/WAFS/:id', urlencodedParser,
         console.log('geen error, naar WAFS')
         res.render('pages/WAFS-survey', {
             studentID: req.params.id,
-            error: []
+            error: [],
+            answers: []
         })
     }
 })
@@ -179,7 +184,6 @@ app.post('/CSS/:id', urlencodedParser,
     //form validation
     [
         check('WAFSteacher', 'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('WAFSweek', 'Selecteer alstublieft een week')
@@ -203,14 +207,15 @@ app.post('/CSS/:id', urlencodedParser,
     }
     //check if there are validation errors
     const errors = validationResult(req)
-    if(errors.length >= 1){
-        console.log('error, terug naar wafs', errors)
-        const alert = errors.array()
-        res.render('pages/wafs-survey', {
-            studentID: req.params.id,
-            error: alert
-        })
-    }
+    if(!errors.isEmpty()){
+            const alert = errors.array()
+            console.log('error, back to wafs')
+            res.render('pages/WAFS-survey', {
+                studentID: req.params.id,
+                error: alert,
+                answers: WAFS
+            })
+        }
     else {
         userData.push(WAFS)
 
@@ -222,7 +227,8 @@ app.post('/CSS/:id', urlencodedParser,
 
         res.render('pages/CSS-survey', {
             studentID: req.params.id,
-            error: []
+            error: [],
+            answers: []
         })
     }
 
@@ -233,7 +239,6 @@ app.post('/PWA/:id', urlencodedParser,
     //form validation
     [
         check('CSSteacher', 'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('CSSweek', 'Selecteer alstublieft een week')
@@ -258,14 +263,15 @@ app.post('/PWA/:id', urlencodedParser,
 
     //check if there are validation errors
     const errors = validationResult(req)
-    if(errors.length >= 1){
-        console.log('error, terug naar css')
-        const alert = errors.array()
-        res.render('pages/CSS-survey', {
-            studentID: req.params.id,
-            error: alert
-        })
-    }
+        if(!errors.isEmpty()){
+            const alert = errors.array()
+            console.log('error, back to CSS')
+            res.render('pages/CSS-survey', {
+                studentID: req.params.id,
+                error: alert,
+                answers: CSSTTR
+            })
+        }
 
     else {
         userData.push(CSSTTR)
@@ -278,7 +284,8 @@ app.post('/PWA/:id', urlencodedParser,
 
         res.render('pages/PWA-survey', {
             studentID: req.params.id,
-            error: []
+            error: [],
+            answers: []
         })
     }
 
@@ -289,7 +296,6 @@ app.post('/BT/:id', urlencodedParser,
     //form validation
     [
         check('PWAteacher',  'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('PWAweek', 'Selecteer alstublieft een week')
@@ -314,12 +320,13 @@ app.post('/BT/:id', urlencodedParser,
 
     //check if there are validation errors
     const errors = validationResult(req)
-    if(errors.length >= 1){
+        if(!errors.isEmpty()){
         const alert = errors.array()
         console.log('error, terug naar pwa')
         res.render('pages/PWA-survey', {
             studentID: req.params.id,
-            error: alert
+            error: alert,
+            answers: PWA
         })
     }
     else {
@@ -333,7 +340,8 @@ app.post('/BT/:id', urlencodedParser,
 
         res.render('pages/BT-survey', {
             studentID: req.params.id,
-            error: []
+            error: [],
+            answers: []
         })
     }
 
@@ -345,7 +353,6 @@ app.post('/RTW/:id', urlencodedParser,
     //form validation
     [
         check('BTteacher',  'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('BTweek', 'Selecteer alstublieft een week')
@@ -370,12 +377,13 @@ app.post('/RTW/:id', urlencodedParser,
 
     //check if there are validation errors
     const errors = validationResult(req)
-    if(errors.length >= 1){
+        if(!errors.isEmpty()){
         const alert = errors.array()
         console.log('error, terug naar BT')
         res.render('pages/BT-survey', {
             studentID: req.params.id,
-            error: alert
+            error: alert,
+            answers: BT
         })
     }
     else {
@@ -388,7 +396,8 @@ app.post('/RTW/:id', urlencodedParser,
 
         res.render('pages/RTW-survey', {
             studentID: req.params.id,
-            error: []
+            error: [],
+            answers: []
         })
     }
 
@@ -399,7 +408,6 @@ app.post('/HCD/:id', urlencodedParser,
     //form validation
     [
         check('RTWteacher',  'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('RTWweek', 'Selecteer alstublieft een week')
@@ -424,28 +432,32 @@ app.post('/HCD/:id', urlencodedParser,
 
     //check if there are validation errors
     const errors = validationResult(req)
-    if(errors.length >= 1){
+        if(!errors.isEmpty()){
         console.log(errors)
         const alert = errors.array()
         console.log('error, terug naar RTW')
         res.render('pages/RTW-survey', {
             studentID: req.params.id,
-            error: alert
+            error: alert,
+            answers: RTW
         })
     }
+    else {
+        userData.push(RTW)
 
-    userData.push(RTW)
-
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
 
         console.log('geen error, door naar hcd')
 
-    res.render('pages/HCD-survey', {
-        studentID: req.params.id,
-        error: []
-    })
+        res.render('pages/HCD-survey', {
+            studentID: req.params.id,
+            error: [],
+            answers: []
+        })
+    }
+
 })
 
 //save data from RTW and redirect to thank you page
@@ -453,7 +465,6 @@ app.post('/result/:id', urlencodedParser,
     //form validation
     [
         check('HCDteacher', 'Vul alsftublieft een geldige naam in')
-            .exists()
             .isAlpha()
             .isLength({ min: 3}),
         check('HCDweek', 'Selecteer alstublieft een week')
@@ -479,26 +490,30 @@ app.post('/result/:id', urlencodedParser,
 
     const errors = validationResult(req)
     //check if there are validation errors
-    if(errors.length >= 1){
+        if(!errors.isEmpty()){
         console.log('error, terug naar hcd')
         const alert = errors.array()
         res.render('pages/hcd-survey', {
             studentID: req.params.id,
-            error: alert
+            error: alert,
+            answers: HCD
         })
     }
 
-    userData.push(HCD)
+    else {
+        userData.push(HCD)
 
-    fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
-        // console.log("JSON data is saved.")
-    })
+        fs.writeFile(path, JSON.stringify(userData, null, 2), () => {
+            // console.log("JSON data is saved.")
+        })
         console.log('geen error, door naar result')
 
-    res.render('pages/result', {
-        studentID: req.params.id,
-        error: []
-    })
+        res.render('pages/result', {
+            studentID: req.params.id,
+            error: [],
+            answers: []
+        })
+    }
 })
 
 

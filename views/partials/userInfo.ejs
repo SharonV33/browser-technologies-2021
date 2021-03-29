@@ -1,14 +1,20 @@
 <form id="form" method="post" action="/WN">
-<h2>Jouw informatie</h2>
+    <h2>Jouw informatie</h2>
 
-    <% if (error.length > 1) { %>
-        <% error.forEach(function(item) { %>
-        <p class="error"><%- item.msg%></p>
-    <% })}%>
+    <%- include('../partials/error')%>
 
     <label for="name">Naam</label>
-    <input name="name"  id="name" placeholder="name">
+    <% if(answers.name){ %>
+        <input name="name"  id="name" placeholder="name" type="text" value=<%= answers.name %>>
+    <% } else { %>
+        <input name="name"  id="name" placeholder="name" type="text">
+    <% }%>
     <label for="studentID">Studentennummer</label>
-    <input name="studentID" id="studentID" placeholder="Studentennummer">
+    <% if(answers.studentID ){ %>
+        <input name="studentID" id="studentID" placeholder="Studentennummer" type="text" value=<%= answers.studentID %>>
+    <% } else { %>
+        <input name="studentID" id="studentID" placeholder="Studentennummer" type="text">
+    <% }%>
+
     <input type="submit" value="Volgende">
 </form>

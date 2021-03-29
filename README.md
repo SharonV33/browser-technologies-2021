@@ -1,3 +1,24 @@
+## Minor web development and design survey
+[live link](https://minorwebdev.herokuapp.com/)
+<img src="https://i.ibb.co/kmHbs9g/image.png">
+
+## Tabe of content
+* [features](#features)
+* [the Assignment](#the-assignment)
+* [The functional layer](#the-functional-layer)
+* [The usable layer](#the-usable-layer)
+* [The pleasurable layer](#the-pleasurable-layer)
+* [Testing]()
+* [installing](#installing)
+
+## features
+* Pure CSS sliders
+* A progress bar using LocalStorage
+* Saving data to JSON
+* Form validation with express-validation
+* Pre filling already given answers
+
+
 ## the assignment
 For the class Browser technologies, I was asked to make a progressively enhanced 
 survey for the minor web development and design. Progressive enhancement is an 
@@ -43,15 +64,13 @@ for users who have this feature enabled and available. The progress bar lets use
 in the survey they are at any point. This could also motivate the user to finish the survey if 
 they see that they are almost done.
 
+
+
 ## Testing
 Google pixel 4 - chrome
 iPhone- safari
 
 Desktop firefox en safari
-
-## Enhancements
-For my enhancements, I decided to choose for a selector bar with CSS 
-for my usable layer and a progress bar for my pleasurable layer. Neither of these features are required to reach the goal of filling in the survey, but they make the user experience more pleasurable.
 
 ## installing
 Clone the repository
@@ -74,16 +93,5 @@ Run the project for deplopment
 ```
 npm run start
 ```
-
-To do
-- [x] Save all answers from survey to json file
-- [x] fetch json file and let user continue from where they left off
-- [x] add css
-- [x] add slider bar - enhancement
-- [x] add client side JS
-- [x] Local storage progress bar - enhancement
-- [x] Server validation
-- [ ] Readme
-- [ ] testing
 
 MIT licence

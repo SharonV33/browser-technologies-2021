@@ -40,7 +40,7 @@ if(typeof(Storage) !== "undefined") {
         progressContainer.parentNode.removeChild(progressContainer)
     }
     else {
-        form.insertBefore(progressContainer, document.querySelector('section'))
+        form.insertBefore(progressContainer, currentPage)
         progressContainer.appendChild(progressBar)
         progressBar.style.width = percentage + '%'
     }

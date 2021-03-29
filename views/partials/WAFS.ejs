@@ -1,126 +1,267 @@
-    <section>
+
+<form id="form" method="post" action="/CSS/<%- studentID %>">
     <h2>Web app from scratch</h2>
         <%- include('../partials/error')%>
+
+    <%- include('../partials/error')%>
+
     <label for="WAFSteacher">Docent</label>
-    <input name="WAFSteacher" id="WAFSteacher" placeholder="docent">
+    <% if(answers.teacher ){ %>
+        <input name="WAFSteacher" id="WAFSteacher" placeholder="docent" type="text" value=<%= answers.teacher %>>
+    <% } else { %>
+        <input name="WAFSteacher" id="WAFSteacher" placeholder="docent" type="text">
+    <% }%>
 
     <label for="WAFSweek">In welke week heb je dit blok gevolgd?</label>
     <ul>
         <li>
-            <input type="radio" id="WAFSweek1" name="WAFSweek"value="1">
+            <% if(answers.week === "1" ) { %>
+                <input type="radio" id="WAFSweek1" name="WAFSweek" value="1" checked="checked">
+            <% } else { %>
+                <input type="radio" id="WAFSweek1" name="WAFSweek" value="1">
+            <% } %>
             <label for="WAFSweek1">Week 1 - 4</label>
         </li>
         <li>
-            <input type="radio" id="WAFSweek2" name="WAFSweek" value="2">
+            <% if(answers.week === "2" ) { %>
+                <input type="radio" id="WAFSweek2" name="WAFSweek" value="2" checked="checked">
+            <% } else { %>
+                <input type="radio" id="WAFSweek2" name="WAFSweek" value="2">
+            <% } %>
             <label for="WAFSweek2">Week 5 - 9</label>
         </li>
         <li>
-            <input type="radio" id="WAFSweek3" name="WAFSweek" value="3">
+            <% if(answers.week === "3" ) { %>
+                <input type="radio" id="WAFSweek3" name="WAFSweek" value="3" checked="checked">
+            <% } else { %>
+                <input type="radio" id="WAFSweek2" name="WAFSweek" value="3">
+            <% } %>
             <label for="WAFSweek3">Week 10 - 14</label>
         </li>
     </ul>
 
-    <label for=" WAFSmaterial">Wat vond je van de lesstof?</label>
+    <label for="WAFSmaterial">Wat vond je van de lesstof?</label>
     <section class="bar">
 
-        <input type="radio" id=" WAFSMaterial10" name=" WAFSmaterial" value="10">
-        <label for=" WAFSMaterial10">10</label>
+        <% if( answers.material === "10" ) { %>
+            <input type="radio" id="WAFSMaterial10" name="WAFSmaterial" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial10" name="WAFSmaterial" value="10">
+        <% } %>
+        <label for="WAFSMaterial10">10</label>
 
-        <input type="radio" id=" WAFSMaterial9" name=" WAFSmaterial" value="9">
-        <label for=" WAFSMaterial9">9</label>
+        <% if( answers.material === "9" ) { %>
+            <input type="radio" id="WAFSMaterial9" name="WAFSmaterial" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial9" name="WAFSmaterial" value="9">
+        <% } %>
+        <label for="WAFSMaterial9">9</label>
 
-        <input type="radio" id=" WAFSMaterial8" name=" WAFSmaterial" value="8">
-        <label for=" WAFSMaterial8">8</label>
+        <% if( answers.material === "8" ) { %>
+            <input type="radio" id="WAFSMaterial8" name="WAFSmaterial" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial8" name="WAFSmaterial" value="8">
+        <% } %>
+        <label for="WAFSMaterial8">8</label>
 
+        <% if( answers.material === "7" ) { %>
+            <input type="radio" id="WAFSMaterial7" name="WAFSmaterial" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial7" name="WAFSmaterial" value="7">
+        <% } %>
+        <label for="WAFSMaterial7">7</label>
 
-        <input type="radio" id=" WAFSMaterial7" name=" WAFSmaterial" value="7">
-        <label for=" WAFSMaterial7">7</label>
+        <% if( answers.material === "6" ) { %>
+            <input type="radio" id="WAFSMaterial6" name="WAFSmaterial" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial6" name="WAFSmaterial" value="6">
+        <% } %>
+        <label for="WAFSMaterial6">6</label>
 
-        <input type="radio" id=" WAFSMaterial6" name=" WAFSmaterial" value="6">
-        <label for=" WAFSMaterial6">6</label>
+        <% if( answers.material === "5" ) { %>
+            <input type="radio" id="WAFSMaterial5" name="WAFSmaterial" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial5" name="WAFSmaterial" value="5">
+        <% } %>
+        <label for="WAFSMaterial5">5</label>
 
-        <input type="radio" id=" WAFSMaterial5" name=" WAFSmaterial" value="5">
-        <label for=" WAFSMaterial5">5</label>
+        <% if( answers.material === "4" ) { %>
+            <input type="radio" id="WAFSMaterial4" name="WAFSmaterial" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial4" name="WAFSmaterial" value="4">
+        <% } %>
+        <label for="WAFSMaterial4">4</label>
 
-        <input type="radio" id=" WAFSMaterial4" name=" WAFSmaterial" value="4">
-        <label for=" WAFSMaterial4">4</label>
+        <% if( answers.material === "3" ) { %>
+            <input type="radio" id="WAFSMaterial3" name="WAFSmaterial" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial3" name="WAFSmaterial" value="3">
+        <% } %>
+        <label for="WAFSMaterial3">3</label>
 
-        <input type="radio" id=" WAFSMaterial3" name=" WAFSmaterial" value="3">
-        <label for=" WAFSMaterial3">3</label>
+        <% if( answers.material === "2" ) { %>
+            <input type="radio" id="WAFSMaterial2" name="WAFSmaterial" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial2" name="WAFSmaterial" value="2">
+        <% } %>
+        <label for="WAFSMaterial2">2</label>
 
-        <input type="radio" id=" WAFSMaterial2" name=" WAFSmaterial" value="2">
-        <label for=" WAFSMaterial2">2</label>
-
-        <input type="radio" id=" WAFSMaterial1" name=" WAFSmaterial" value="1">
-        <label for=" WAFSMaterial1">1</label>
+        <% if( answers.material === "1" ) { %>
+            <input type="radio" id="WAFSMaterial1" name="WAFSmaterial" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSMaterial1" name="WAFSmaterial" value="1">
+        <% } %>
+        <label for="WAFSMaterial1">1</label>
     </section>
 
-    <label for=" WAFSexplanation">Wat vond je van de Uitleg?</label>
+    <label for="WAFSexplanation">Wat vond je van de uitleg?</label>
     <section class="bar">
 
-        <input type="radio" id=" WAFSexplanation10" name=" WAFSexplanation" value="10">
-        <label for=" WAFSexplanation10">10</label>
+        <% if( answers.explanation === "10" ) { %>
+            <input type="radio" id="WAFSexplanation10" name="WAFSexplanation" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation10" name="WAFSexplanation" value="10">
+        <% } %>
+        <label for="WAFSexplanation10">10</label>
 
-        <input type="radio" id=" WAFSexplanation9" name=" WAFSexplanation" value="9">
-        <label for=" WAFSexplanation9">9</label>
+        <% if( answers.explanation === "9" ) { %>
+            <input type="radio" id="WAFSexplanation9" name="WAFSexplanation" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation9" name="WAFSexplanation" value="9">
+        <% } %>
+        <label for="WAFSexplanation9">9</label>
 
-        <input type="radio" id=" WAFSexplanation8" name=" WAFSexplanation" value="8">
-        <label for=" WAFSexplanation8">8</label>
+        <% if( answers.explanation === "8" ) { %>
+            <input type="radio" id="WAFSexplanation8" name="WAFSexplanation" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation8" name="WAFSexplanation" value="8">
+        <% } %>
+        <label for="WAFSexplanation8">8</label>
 
-        <input type="radio" id=" WAFSexplanation7" name=" WAFSexplanation" value="7">
-        <label for=" WAFSexplanation7">7</label>
+        <% if( answers.explanation === "7" ) { %>
+            <input type="radio" id="WAFSexplanation7" name="WAFSexplanation" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation7" name="WAFSexplanation" value="7">
+        <% } %>
+        <label for="WAFSexplanation7">7</label>
 
-        <input type="radio" id=" WAFSexplanation6" name=" WAFSexplanation" value="6">
-        <label for=" WAFSexplanation6">6</label>
+        <% if( answers.explanation === "6" ) { %>
+            <input type="radio" id="WAFSexplanation6" name="WAFSexplanation" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation6" name="WAFSexplanation" value="6">
+        <% } %>
+        <label for="WAFSexplanation6">6</label>
 
-        <input type="radio" id=" WAFSexplanation5" name=" WAFSexplanation" value="5">
-        <label for=" WAFSexplanation5">5</label>
+        <% if( answers.explanation === "5" ) { %>
+            <input type="radio" id="WAFSexplanation5" name="WAFSexplanation" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation5" name="WAFSexplanation" value="5">
+        <% } %>
+        <label for="WAFSexplanation5">5</label>
 
-        <input type="radio" id=" WAFSexplanation4" name=" WAFSexplanation" value="4">
-        <label for=" WAFSexplanation4">4</label>
+        <% if( answers.explanation === "4" ) { %>
+            <input type="radio" id="WAFSexplanation4" name="WAFSexplanation" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation4" name="WAFSexplanation" value="4">
+        <% } %>
+        <label for="WAFSexplanation4">4</label>
 
-        <input type="radio" id=" WAFSexplanation3" name=" WAFSexplanation" value="3">
-        <label for=" WAFSexplanation3">3</label>
+        <% if( answers.explanation === "3" ) { %>
+            <input type="radio" id="WAFSexplanation3" name="WAFSexplanation" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation3" name="WAFSexplanation" value="3">
+        <% } %>
+        <label for="WAFSexplanation3">3</label>
 
-        <input type="radio" id=" WAFSexplanation2" name=" WAFSexplanation" value="2">
-        <label for=" WAFSexplanation2">2</label>
+        <% if( answers.explanation === "2" ) { %>
+            <input type="radio" id="WAFSexplanation2" name="WAFSexplanation" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation2" name="WAFSexplanation" value="2">
+        <% } %>
+        <label for="WAFSexplanation2">2</label>
 
-        <input type="radio" id=" WAFSexplanation1" name=" WAFSexplanation" value="1">
-        <label for=" WAFSexplanation1">1</label>
-
+        <% if( answers.explanation === "1" ) { %>
+            <input type="radio" id="WAFSexplanation1" name="WAFSexplanation" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSexplanation1" name="WAFSexplanation" value="1">
+        <% } %>
+        <label for="WAFSexplanation1">1</label>
     </section>
 
-    <label for=" WAFSinsight">Tot hoever is je inzicht verbeterd?</label>
+    <label for="WAFSinsight">Tot hoever is je inzicht verbeterd?</label>
     <section class="bar">
-        <input type="radio" id=" WAFSinsight10" name=" WAFSinsight" value="10">
-        <label for=" WAFSinsight10">10</label>
 
-        <input type="radio" id=" WAFSinsight9" name=" WAFSinsight" value="9">
-        <label for=" WAFSinsight9">9</label>
+        <% if( answers.insight === "10" ) { %>
+            <input type="radio" id="WAFSinsight10" name="WAFSinsight" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight10" name="WAFSinsight" value="10">
+        <% } %>
+        <label for="WAFSinsight10">10</label>
 
-        <input type="radio" id=" WAFSinsight8" name=" WAFSinsight" value="8">
-        <label for=" WAFSinsight8">8</label>
+        <% if( answers.insight === "9" ) { %>
+            <input type="radio" id="WAFSinsight9" name="WAFSinsight" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight9" name="WAFSinsight" value="9">
+        <% } %>
+        <label for="WAFSinsight9">9</label>
 
-        <input type="radio" id=" WAFSinsight7" name=" WAFSinsight" value="7">
-        <label for=" WAFSinsight7">7</label>
+        <% if( answers.insight === "8" ) { %>
+            <input type="radio" id="WAFSinsight8" name="WAFSinsight" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight8" name="WAFSinsight" value="8">
+        <% } %>
+        <label for="WAFSinsight8">8</label>
 
-        <input type="radio" id=" WAFSinsight6" name=" WAFSinsight" value="6">
-        <label for=" WAFSinsight6">6</label>
+        <% if( answers.insight === "7" ) { %>
+            <input type="radio" id="WAFSinsight7" name="WAFSinsight" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight7" name="WAFSinsight" value="7">
+        <% } %>
+        <label for="WAFSinsight7">7</label>
 
-        <input type="radio" id=" WAFSinsight5" name=" WAFSinsight" value="5">
-        <label for=" WAFSinsight5">5</label>
+        <% if( answers.insight === "6" ) { %>
+            <input type="radio" id="WAFSinsight6" name="WAFSinsight" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight6" name="WAFSinsight" value="6">
+        <% } %>
+        <label for="WAFSinsight6">6</label>
 
-        <input type="radio" id=" WAFSinsight4" name=" WAFSinsight" value="4">
-        <label for=" WAFSinsight4">4</label>
+        <% if( answers.insight === "5" ) { %>
+            <input type="radio" id="WAFSinsight5" name="WAFSinsight" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight5" name="WAFSinsight" value="5">
+        <% } %>
+        <label for="WAFSinsight5">5</label>
 
-        <input type="radio" id=" WAFSinsight3" name=" WAFSinsight" value="3">
-        <label for=" WAFSinsight3">3</label>
+        <% if( answers.insight === "4" ) { %>
+            <input type="radio" id="WAFSinsight4" name="WAFSinsight" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight4" name="WAFSinsight" value="4">
+        <% } %>
+        <label for="WAFSinsight4">4</label>
 
-        <input type="radio" id=" WAFSinsight2" name=" WAFSinsight" value="2">
-        <label for=" WAFSinsight2">2</label>
+        <% if( answers.insight === "3" ) { %>
+            <input type="radio" id="WAFSinsight3" name="WAFSinsight" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight3" name="WAFSinsight" value="3">
+        <% } %>
+        <label for="WAFSinsight3">3</label>
 
-        <input type="radio" id=" WAFSinsight1" name=" WAFSinsight" value="1">
-        <label for=" WAFSinsight1">1</label>
+        <% if( answers.insight === "2" ) { %>
+            <input type="radio" id="WAFSinsight2" name="WAFSinsight" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight2" name="WAFSinsight" value="2">
+        <% } %>
+        <label for="WAFSinsight2">2</label>
 
+        <% if( answers.insight === "1" ) { %>
+            <input type="radio" id="WAFSinsight1" name="WAFSinsight" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="WAFSinsight1" name="WAFSinsight" value="1">
+        <% } %>
+        <label for="WAFSinsight1">1</label>
     </section>
-</section>
+
+
+    <input type="submit" value="Volgende">
+</form>

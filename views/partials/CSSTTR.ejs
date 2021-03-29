@@ -1,23 +1,40 @@
-<section>
+
+<form id="form" method="post" action="/PWA/<%- studentID %>">
     <h2>CSS to the rescue</h2>
 
     <%- include('../partials/error')%>
 
     <label for="CSSteacher">Docent</label>
-    <input name="CSSteacher" id="CSSteacher" placeholder="docent">
+    <% if(answers.teacher ){ %>
+        <input name="CSSteacher" id="CSSteacher" placeholder="docent" type="text" value=<%= answers.teacher %>>
+    <% } else { %>
+        <input name="CSSteacher" id="CSSteacher" placeholder="docent" type="text">
+    <% }%>
 
     <label for="CSSweek">In welke week heb je dit blok gevolgd?</label>
     <ul>
         <li>
-            <input type="radio" id="CSSweek1" name="CSSweek"value="1">
+            <% if(answers.week === "1" ) { %>
+                <input type="radio" id="CSSweek1" name="CSSweek" value="1" checked="checked">
+            <% } else { %>
+                <input type="radio" id="CSSweek1" name="CSSweek" value="1">
+            <% } %>
             <label for="CSSweek1">Week 1 - 4</label>
         </li>
         <li>
-            <input type="radio" id="CSSweek2" name="CSSweek" value="2">
+            <% if(answers.week === "2" ) { %>
+                <input type="radio" id="CSSweek2" name="CSSweek" value="2" checked="checked">
+            <% } else { %>
+                <input type="radio" id="CSSweek2" name="CSSweek" value="2">
+            <% } %>
             <label for="CSSweek2">Week 5 - 9</label>
         </li>
         <li>
-            <input type="radio" id="CSSweek3" name="CSSweek" value="3">
+            <% if(answers.week === "3" ) { %>
+                <input type="radio" id="CSSweek3" name="CSSweek" value="3" checked="checked">
+            <% } else { %>
+                <input type="radio" id="CSSweek2" name="CSSweek" value="3">
+            <% } %>
             <label for="CSSweek3">Week 10 - 14</label>
         </li>
     </ul>
@@ -25,104 +42,225 @@
     <label for="CSSmaterial">Wat vond je van de lesstof?</label>
     <section class="bar">
 
-        <input type="radio" id="CSSMaterial10" name="CSSmaterial" value="10">
+        <% if( answers.material === "10" ) { %>
+            <input type="radio" id="CSSMaterial10" name="CSSmaterial" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial10" name="CSSmaterial" value="10">
+        <% } %>
         <label for="CSSMaterial10">10</label>
 
-        <input type="radio" id="CSSMaterial9" name="CSSmaterial" value="9">
+        <% if( answers.material === "9" ) { %>
+            <input type="radio" id="CSSMaterial9" name="CSSmaterial" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial9" name="CSSmaterial" value="9">
+        <% } %>
         <label for="CSSMaterial9">9</label>
 
-        <input type="radio" id="CSSMaterial8" name="CSSmaterial" value="8">
+        <% if( answers.material === "8" ) { %>
+            <input type="radio" id="CSSMaterial8" name="CSSmaterial" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial8" name="CSSmaterial" value="8">
+        <% } %>
         <label for="CSSMaterial8">8</label>
 
-
-        <input type="radio" id="CSSMaterial7" name="CSSmaterial" value="7">
+        <% if( answers.material === "7" ) { %>
+            <input type="radio" id="CSSMaterial7" name="CSSmaterial" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial7" name="CSSmaterial" value="7">
+        <% } %>
         <label for="CSSMaterial7">7</label>
 
-        <input type="radio" id="CSSMaterial6" name="CSSmaterial" value="6">
+        <% if( answers.material === "6" ) { %>
+            <input type="radio" id="CSSMaterial6" name="CSSmaterial" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial6" name="CSSmaterial" value="6">
+        <% } %>
         <label for="CSSMaterial6">6</label>
 
-        <input type="radio" id="CSSMaterial5" name="CSSmaterial" value="5">
+        <% if( answers.material === "5" ) { %>
+            <input type="radio" id="CSSMaterial5" name="CSSmaterial" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial5" name="CSSmaterial" value="5">
+        <% } %>
         <label for="CSSMaterial5">5</label>
 
-        <input type="radio" id="CSSMaterial4" name="CSSmaterial" value="4">
+        <% if( answers.material === "4" ) { %>
+            <input type="radio" id="CSSMaterial4" name="CSSmaterial" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial4" name="CSSmaterial" value="4">
+        <% } %>
         <label for="CSSMaterial4">4</label>
 
-        <input type="radio" id="CSSMaterial3" name="CSSmaterial" value="3">
+        <% if( answers.material === "3" ) { %>
+            <input type="radio" id="CSSMaterial3" name="CSSmaterial" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial3" name="CSSmaterial" value="3">
+        <% } %>
         <label for="CSSMaterial3">3</label>
 
-        <input type="radio" id="CSSMaterial2" name="CSSmaterial" value="2">
+        <% if( answers.material === "2" ) { %>
+            <input type="radio" id="CSSMaterial2" name="CSSmaterial" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial2" name="CSSmaterial" value="2">
+        <% } %>
         <label for="CSSMaterial2">2</label>
 
-        <input type="radio" id="CSSMaterial1" name="CSSmaterial" value="1">
+        <% if( answers.material === "1" ) { %>
+            <input type="radio" id="CSSMaterial1" name="CSSmaterial" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSMaterial1" name="CSSmaterial" value="1">
+        <% } %>
         <label for="CSSMaterial1">1</label>
     </section>
 
-    <label for="CSSexplanation">Wat vond je van de Uitleg?</label>
+    <label for="CSSexplanation">Wat vond je van de uitleg?</label>
     <section class="bar">
 
-        <input type="radio" id="CSSexplanation10" name="CSSexplanation" value="10">
+        <% if( answers.explanation === "10" ) { %>
+            <input type="radio" id="CSSexplanation10" name="CSSexplanation" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation10" name="CSSexplanation" value="10">
+        <% } %>
         <label for="CSSexplanation10">10</label>
 
-        <input type="radio" id="CSSexplanation9" name="CSSexplanation" value="9">
+        <% if( answers.explanation === "9" ) { %>
+            <input type="radio" id="CSSexplanation9" name="CSSexplanation" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation9" name="CSSexplanation" value="9">
+        <% } %>
         <label for="CSSexplanation9">9</label>
 
-        <input type="radio" id="CSSexplanation8" name="CSSexplanation" value="8">
+        <% if( answers.explanation === "8" ) { %>
+            <input type="radio" id="CSSexplanation8" name="CSSexplanation" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation8" name="CSSexplanation" value="8">
+        <% } %>
         <label for="CSSexplanation8">8</label>
 
-        <input type="radio" id="CSSexplanation7" name="CSSexplanation" value="7">
+        <% if( answers.explanation === "7" ) { %>
+            <input type="radio" id="CSSexplanation7" name="CSSexplanation" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation7" name="CSSexplanation" value="7">
+        <% } %>
         <label for="CSSexplanation7">7</label>
 
-        <input type="radio" id="CSSexplanation6" name="CSSexplanation" value="6">
+        <% if( answers.explanation === "6" ) { %>
+            <input type="radio" id="CSSexplanation6" name="CSSexplanation" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation6" name="CSSexplanation" value="6">
+        <% } %>
         <label for="CSSexplanation6">6</label>
 
-        <input type="radio" id="CSSexplanation5" name="CSSexplanation" value="5">
+        <% if( answers.explanation === "5" ) { %>
+            <input type="radio" id="CSSexplanation5" name="CSSexplanation" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation5" name="CSSexplanation" value="5">
+        <% } %>
         <label for="CSSexplanation5">5</label>
 
-        <input type="radio" id="CSSexplanation4" name="CSSexplanation" value="4">
+        <% if( answers.explanation === "4" ) { %>
+            <input type="radio" id="CSSexplanation4" name="CSSexplanation" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation4" name="CSSexplanation" value="4">
+        <% } %>
         <label for="CSSexplanation4">4</label>
 
-        <input type="radio" id="CSSexplanation3" name="CSSexplanation" value="3">
+        <% if( answers.explanation === "3" ) { %>
+            <input type="radio" id="CSSexplanation3" name="CSSexplanation" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation3" name="CSSexplanation" value="3">
+        <% } %>
         <label for="CSSexplanation3">3</label>
 
-        <input type="radio" id="CSSexplanation2" name="CSSexplanation" value="2">
+        <% if( answers.explanation === "2" ) { %>
+            <input type="radio" id="CSSexplanation2" name="CSSexplanation" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation2" name="CSSexplanation" value="2">
+        <% } %>
         <label for="CSSexplanation2">2</label>
 
-        <input type="radio" id="CSSexplanation1" name="CSSexplanation" value="1">
+        <% if( answers.explanation === "1" ) { %>
+            <input type="radio" id="CSSexplanation1" name="CSSexplanation" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSexplanation1" name="CSSexplanation" value="1">
+        <% } %>
         <label for="CSSexplanation1">1</label>
-
     </section>
 
     <label for="CSSinsight">Tot hoever is je inzicht verbeterd?</label>
     <section class="bar">
-        <input type="radio" id="CSSinsight10" name="CSSinsight" value="10">
+
+        <% if( answers.insight === "10" ) { %>
+            <input type="radio" id="CSSinsight10" name="CSSinsight" value="10" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight10" name="CSSinsight" value="10">
+        <% } %>
         <label for="CSSinsight10">10</label>
 
-        <input type="radio" id="CSSinsight9" name="CSSinsight" value="9">
+        <% if( answers.insight === "9" ) { %>
+            <input type="radio" id="CSSinsight9" name="CSSinsight" value="9" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight9" name="CSSinsight" value="9">
+        <% } %>
         <label for="CSSinsight9">9</label>
 
-        <input type="radio" id="CSSinsight8" name="CSSinsight" value="8">
+        <% if( answers.insight === "8" ) { %>
+            <input type="radio" id="CSSinsight8" name="CSSinsight" value="8" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight8" name="CSSinsight" value="8">
+        <% } %>
         <label for="CSSinsight8">8</label>
 
-        <input type="radio" id="CSSinsight7" name="CSSinsight" value="7">
+        <% if( answers.insight === "7" ) { %>
+            <input type="radio" id="CSSinsight7" name="CSSinsight" value="7" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight7" name="CSSinsight" value="7">
+        <% } %>
         <label for="CSSinsight7">7</label>
 
-        <input type="radio" id="CSSinsight6" name="CSSinsight" value="6">
+        <% if( answers.insight === "6" ) { %>
+            <input type="radio" id="CSSinsight6" name="CSSinsight" value="6" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight6" name="CSSinsight" value="6">
+        <% } %>
         <label for="CSSinsight6">6</label>
 
-        <input type="radio" id="CSSinsight5" name="CSSinsight" value="5">
+        <% if( answers.insight === "5" ) { %>
+            <input type="radio" id="CSSinsight5" name="CSSinsight" value="5" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight5" name="CSSinsight" value="5">
+        <% } %>
         <label for="CSSinsight5">5</label>
 
-        <input type="radio" id="CSSinsight4" name="CSSinsight" value="4">
+        <% if( answers.insight === "4" ) { %>
+            <input type="radio" id="CSSinsight4" name="CSSinsight" value="4" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight4" name="CSSinsight" value="4">
+        <% } %>
         <label for="CSSinsight4">4</label>
 
-        <input type="radio" id="CSSinsight3" name="CSSinsight" value="3">
+        <% if( answers.insight === "3" ) { %>
+            <input type="radio" id="CSSinsight3" name="CSSinsight" value="3" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight3" name="CSSinsight" value="3">
+        <% } %>
         <label for="CSSinsight3">3</label>
 
-        <input type="radio" id="CSSinsight2" name="CSSinsight" value="2">
+        <% if( answers.insight === "2" ) { %>
+            <input type="radio" id="CSSinsight2" name="CSSinsight" value="2" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight2" name="CSSinsight" value="2">
+        <% } %>
         <label for="CSSinsight2">2</label>
 
-        <input type="radio" id="CSSinsight1" name="CSSinsight" value="1">
+        <% if( answers.insight === "1" ) { %>
+            <input type="radio" id="CSSinsight1" name="CSSinsight" value="1" checked="checked">
+        <% } else { %>
+            <input type="radio" id="CSSinsight1" name="CSSinsight" value="1">
+        <% } %>
         <label for="CSSinsight1">1</label>
-
     </section>
-</section>
+
+
+    <input type="submit" value="Volgende">
+</form>
