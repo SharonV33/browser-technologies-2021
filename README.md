@@ -8,7 +8,7 @@
 * [The functional layer](#the-functional-layer)
 * [The usable layer](#the-usable-layer)
 * [The pleasurable layer](#the-pleasurable-layer)
-* [Testing]()
+* [Testing](#testing)
 * [installing](#installing)
 
 ## features
@@ -67,7 +67,7 @@ they see that they are almost done.
 
 
 ## Testing
-Google pixel 4 - chrome
+[Google pixel 4 - chrome](https://github.com/SharonV33/browser-technologies-2021/wiki/Testing---google-pixel-4)
 iPhone- safari
 
 Desktop firefox en safari

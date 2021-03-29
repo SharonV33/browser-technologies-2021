@@ -156,7 +156,6 @@ app.post('/WAFS/:id', urlencodedParser,
     const errors = validationResult(req)
     if(!errors.isEmpty()){
         const alert = errors.array()
-        console.log(weeklyNerd.material)
         console.log('error, back to WN')
         res.render('pages/wn-survey', {
             studentID: req.params.id,
