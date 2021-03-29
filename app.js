@@ -157,7 +157,7 @@ app.post('/WAFS/:id', urlencodedParser,
     if(!errors.isEmpty()){
         const alert = errors.array()
         console.log('error, back to WN')
-        res.render('pages/wn-survey', {
+        res.render('pages/WN-survey', {
             studentID: req.params.id,
             error: alert,
             answers: weeklyNerd
@@ -492,7 +492,7 @@ app.post('/result/:id', urlencodedParser,
         if(!errors.isEmpty()){
         console.log('error, terug naar hcd')
         const alert = errors.array()
-        res.render('pages/hcd-survey', {
+        res.render('pages/HCD-survey', {
             studentID: req.params.id,
             error: alert,
             answers: HCD
