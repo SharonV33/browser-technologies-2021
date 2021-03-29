@@ -68,9 +68,13 @@ they see that they are almost done.
 
 ## Testing
 [Google pixel 4 - chrome](https://github.com/SharonV33/browser-technologies-2021/wiki/Testing---google-pixel-4)
-iPhone- safari
 
-Desktop firefox en safari
+[Iphone X - safari](https://github.com/SharonV33/browser-technologies-2021/wiki/Testing---Iphone-X)
+
+[Macbook pro - safari](https://github.com/SharonV33/browser-technologies-2021/wiki/Testing-macbook---safari)
+
+[Macbook pro - firefox](https://github.com/SharonV33/browser-technologies-2021/wiki/Testing-macbook---firefox)
+
 
 ## installing
 Clone the repository
