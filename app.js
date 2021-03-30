@@ -45,7 +45,7 @@ app.post('/WN', urlencodedParser, [
             name: req.body.name,
             studentID: req.body.studentID
     }
-
+    let userData = []
 
     const errors = validationResult(req)
     if(!errors.isEmpty()){
