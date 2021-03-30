@@ -208,7 +208,7 @@ app.post('/CSS/:id', urlencodedParser,
     const errors = validationResult(req)
     if(!errors.isEmpty()){
             const alert = errors.array()
-            console.log('error, back to wafs')
+            console.log('error, back to wafs', alert)
             res.render('pages/WAFS-survey', {
                 studentID: req.params.id,
                 error: alert,
